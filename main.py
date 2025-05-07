@@ -11,6 +11,6 @@ learning = Image.open("./figure/learning.png")
 sad = Image.open("./figure/sad.png")
 
 left, right = st.columns(2)
-right.image(default, caption="コードくん", width=100)
+right.image(default, caption="コードくん", width=200)
 left.subheader("①15曲の中から好きな曲を選んでみよう!")
 
