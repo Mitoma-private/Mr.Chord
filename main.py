@@ -9,11 +9,14 @@ import config
 st.title("曲当てロボット コードくん")
 st.text("コードくんはピアノ音源を読み込ませることでそれがなんの曲かを当てることができるよ！")
 
+##変数の設定
+st.session_state['page_control'] = 0
 
 
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
 next_b = r_button.button("次へ")
+reset_b = r_button.button("リセット")
 
 right.image(config.default, caption="コードくん", width=200)
 left.subheader("①15曲の中から好きな曲を選んでね!")
