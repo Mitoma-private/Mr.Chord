@@ -31,7 +31,7 @@ data_df = pd.DataFrame(
                   "ドライフラワー / 優里",
                   "奏(かなで) / スキマスイッチ",
                   "ホール・ニュー・ワールド / ディズニー",
-                  "RPG / SEKAI NO OWARI"] 
+                  "RPG / SEKAI NO OWARI"],
     }
 )
 left.dataframe(data_df)
