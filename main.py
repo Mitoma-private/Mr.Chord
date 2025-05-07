@@ -34,5 +34,5 @@ data_df = pd.DataFrame(
                   "RPG / SEKAI NO OWARI"] 
     }
 )
-left.table(data_df)
+left.dataframe(data_df)
 
