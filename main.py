@@ -12,7 +12,8 @@ st.text("コードくんはピアノ音源を読み込ませることでそれ�
 
 
 left, right = st.columns([3,1])
-next_b = st.button("次へ")
+l_button, c_button, r_button = st.columns(3)
+next_b = r_button.button("次へ")
 
 right.image(config.default, caption="コードくん", width=200)
 left.subheader("①15曲の中から好きな曲を選んでね!")
