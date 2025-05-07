@@ -1,0 +1,6 @@
+librosa
+torch
+mir_eval
+sortedcontainers
+numpy
+streamlit
