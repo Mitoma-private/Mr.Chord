@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit.components.v1 as stc
 import time
+import config
 
 ##タイトル
 st.title("曲当てロボット コードくん")
@@ -11,7 +12,9 @@ st.text("コードくんはピアノ音源を読み込ませることでそれ�
 
 
 left, right = st.columns([3,1])
-right.image(default, caption="コードくん", width=200)
+next_b = st.button("次へ")
+
+right.image(config.default, caption="コードくん", width=200)
 left.subheader("①15曲の中から好きな曲を選んでね!")
 
 data_df = pd.DataFrame(
