@@ -17,6 +17,8 @@ if 'page_control' not in st.session_state:
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
 
+left.text("tintin")
+
 ##ボタン押下時の処理
 if r_button.button("次へ"):
     st.session_state['page_control'] += 1
