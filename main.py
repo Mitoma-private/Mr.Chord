@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit.components.v1 as stc
 import time
 import config
+import base64
 
 ##タイトル
 st.title("曲当てロボット コードさん")
@@ -24,11 +25,28 @@ if  r_button.button("リセット"):
     st.session_state['page_control'] = 0
 
 if st.session_state['page_control'] == 0:
-    right.image(config.default, caption="コードさん", width=200) 
+    right.image(config.default, caption="コードさん", width=200)
 
 if st.session_state['page_control'] == 1:
     left.subheader("やぁ! 私の名前はコードさんだよ!")
     right.image(config.happy, caption="コードさん", width=200)
+    
+    ##オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_file = config.Voice_path(st.session_state['page_control'])
+    with open(voice_file, "rb")as f:
+        contents = f.read()
+    voice_str = "data:audio/ogg;base64,%s"%(base64.b64encode(contents).decode())
+    voice_html = """
+                    <audio autoplay=True>
+                    <source src="%s" type="audio/ogg" autoplay=True>
+                    Your browser does not support the audio element.
+                    </audio> 
+                 """%voice_str
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+    
 
 if st.session_state['page_control'] == 2:
     left.subheader("今から曲あてクイズをやってみよう!")
