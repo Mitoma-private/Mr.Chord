@@ -17,21 +17,22 @@ left.subheader("①15曲の中から好きな曲を選んでね!")
 
 data_df = pd.DataFrame(
     {
-        "songs1":["ライラック / Mrs Green Apple",
+        "曲リスト":["ライラック / Mrs Green Apple",
                   "美しい鰭 / スピッツ",
                   "マリーゴールド / あいみょん",
                   "水平線 / back number",
-                  "若者のすべて / フジファブリック"],
-        "songs2":["さよならエレジー / 菅田将暉",
+                  "若者のすべて / フジファブリック",
+                  "RPG / SEKAI NO OWARI",
+                  "さよならエレジー / 菅田将暉",
                   "怪獣の花唄 / Vaundy",
                   "シンデレラボーイ / Saucy dog",
                   "Lemon / 米津玄師",
-                  "となりのトトロ / 井上あずみ"],
-        "songs3":["115万キロのフィルム / official髭男dism",
+                  "となりのトトロ / 井上あずみ",
+                  "115万キロのフィルム / official髭男dism",
                   "ドライフラワー / 優里",
                   "奏(かなで) / スキマスイッチ",
                   "ホール・ニュー・ワールド / ディズニー",
-                  "RPG / SEKAI NO OWARI"],
+                  ],
     }
 )
 left.dataframe(data_df)
