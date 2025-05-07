@@ -25,7 +25,7 @@ data_df = pd.DataFrame(
                   "RPG / SEKAI NO OWARI",
                   "さよならエレジー / 菅田将暉",
                   "怪獣の花唄 / Vaundy"],
-        "曲リスト":["シンデレラボーイ / Saucy dog",
+        "曲リスト2":["シンデレラボーイ / Saucy dog",
                   "Lemon / 米津玄師",
                   "となりのトトロ / 井上あずみ",
                   "115万キロのフィルム / official髭男dism",
