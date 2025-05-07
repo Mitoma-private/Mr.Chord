@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from PIL import Image
+import pandas as pd
 
 st.title("曲当てロボット コードくん")
 st.text("コードくんはピアノ音源を読み込ませることでそれがなんの曲かを当てることができるよ！")
@@ -13,4 +14,25 @@ sad = Image.open("./figure/sad.png")
 left, right = st.columns([3,1])
 right.image(default, caption="コードくん", width=200)
 left.subheader("①15曲の中から好きな曲を選んでね!")
+
+data_df = pd.DataFrame(
+    {
+        "songs1":["ライラック / Mrs Green Apple",
+                  "美しい鰭 / スピッツ",
+                  "マリーゴールド / あいみょん",
+                  "水平線 / back number",
+                  "若者のすべて / フジファブリック"],
+        "songs2":["さよならエレジー / 菅田将暉",
+                  "怪獣の花唄 / Vaundy",
+                  "シンデレラボーイ / Saucy dog",
+                  "Lemon / 米津玄師",
+                  "となりのトトロ / 井上あずみ"],
+        "songs3":["115万キロのフィルム / official髭男dism",
+                  "ドライフラワー / 優里",
+                  "奏(かなで) / スキマスイッチ",
+                  "ホール・ニュー・ワールド / ディズニー",
+                  "RPG / SEKAI NO OWARI"] 
+    }
+)
+st.table(data_df)
 
