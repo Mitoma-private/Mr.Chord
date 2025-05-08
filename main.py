@@ -13,7 +13,8 @@ st.text("コードさんはピアノ音源を読み込ませることでそれ�
 ##変数の設定
 if 'page_control' not in st.session_state:
     st.session_state['page_control'] = 0
-
+if 'upload' not in st.session_state:
+    st.session_state['upload'] = 0
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
@@ -95,9 +96,6 @@ if st.session_state['page_control'] == 4:
 
 if st.session_state['page_control'] == 5:
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
-    if 'upload' not in st.session_state:
-        st.session_state['upload'] = 0
-        
     if st.session_state['upload'] == 0:
         ##オーディオを回す処理
         voice_placeholder = st.empty()
