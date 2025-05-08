@@ -29,9 +29,11 @@ if  r_button.button("リセット"):
     st.session_state['page_control'] = 0
     st.session_state['upload'] = 0
 
+##画面遷移0
 if st.session_state['page_control'] == 0:
     right.image(config.default, caption="コードさん", width=200)
 
+##画面遷移1
 if st.session_state['page_control'] == 1:
     left.subheader("やぁ! 私の名前はコードさんだよ!")
     right.image(config.happy, caption="コードさん", width=200)
@@ -43,7 +45,7 @@ if st.session_state['page_control'] == 1:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     
-
+##画面遷移2
 if st.session_state['page_control'] == 2:
     left.subheader("今から曲あてクイズをやってみよう!")
     right.image(config.default, caption="コードさん", width=200)
@@ -55,6 +57,7 @@ if st.session_state['page_control'] == 2:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+##画面遷移3
 if st.session_state['page_control'] == 3:
     left.subheader("15曲の中から好きな曲を選んでね!")
     right.image(config.default, caption="コードさん", width=200)
@@ -87,6 +90,7 @@ if st.session_state['page_control'] == 3:
     )
     left.dataframe(data_df)
 
+##画面遷移4
 if st.session_state['page_control'] == 4:
     left.subheader("じゃあ、次は実際に曲を演奏してみよう")
     right.image(config.default, caption="コードさん", width=200)
@@ -98,6 +102,7 @@ if st.session_state['page_control'] == 4:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+##画面遷移5
 if st.session_state['page_control'] == 5:
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
 
@@ -120,6 +125,7 @@ if st.session_state['page_control'] == 5:
         voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     right.image(config.happy, caption="コードさん", width=200)
     
+##画面遷移6
 if st.session_state['page_control'] == 6:
     if st.session_state['file_pick'] == False:
         st.error("ファイルを選んでください")
@@ -135,6 +141,7 @@ if st.session_state['page_control'] == 6:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+##画面遷移7
 if st.session_state['page_control'] == 7:
     left.subheader("では、ここから曲を推定するよ！少し待ってね！")
     right.image(config.default, caption="コードさん", width=200)
@@ -146,6 +153,7 @@ if st.session_state['page_control'] == 7:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+##画面遷移8
 if st.session_state['page_control'] == 8:
     left.subheader("ファイルを解析しています...")
     right.image(config.learning, caption="コードさん", width=200)
@@ -157,5 +165,7 @@ if st.session_state['page_control'] == 8:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     
+    with st.spinner("処理中です..."):
+        pass
     
-    
+
