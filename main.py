@@ -33,16 +33,7 @@ if st.session_state['page_control'] == 1:
     
     ##オーディオを回す処理
     voice_placeholder = st.empty()
-    voice_file = config.Voice_path(st.session_state['page_control'])
-    with open(voice_file, "rb")as f:
-        contents = f.read()
-    voice_str = "data:audio/ogg;base64,%s"%(base64.b64encode(contents).decode())
-    voice_html = """
-                    <audio autoplay=True>
-                    <source src="%s" type="audio/ogg" autoplay=True>
-                    Your browser does not support the audio element.
-                    </audio> 
-                 """%voice_str
+    voice_html = config.Voice_content(st.session_state['page_control'])
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
