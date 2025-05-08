@@ -15,6 +15,9 @@ if 'page_control' not in st.session_state:
     st.session_state['page_control'] = 0
 if 'upload' not in st.session_state:
     st.session_state['upload'] = 0
+if 'file_pick' not in st.session_state:
+    st.session_state['file_pick'] = False
+    
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
@@ -104,6 +107,7 @@ if st.session_state['page_control'] == 5:
         filename = wav_file.name
         if filename.lower().endswith(".wav"):
             left.success("ファイルを取得しました")
+            st.session_state['file_pick'] = True
         else:
             left.error("wavファイルをアップロードしてください")
 
@@ -117,6 +121,9 @@ if st.session_state['page_control'] == 5:
     right.image(config.happy, caption="コードさん", width=200)
     
 if st.session_state['page_control'] == 6:
+    if st.session_state['file_pick'] == False:
+        st.session_state['page_control'] -= 1
+
     left.subheader("ファイルを読み込んだよ")
     right.image(config.default, caption="コードさん", width=200)
     
@@ -128,7 +135,7 @@ if st.session_state['page_control'] == 6:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 if st.session_state['page_control'] == 7:
-    left.subheader("じゃあ、今から曲を推定するよ！少し待ってね！")
+    left.subheader("では、ここから曲を推定するよ！少し待ってね！")
     right.image(config.default, caption="コードさん", width=200)
     
     ##オーディオを回す処理
