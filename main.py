@@ -35,11 +35,12 @@ if 'YorN' not in st.session_state:
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
+Yes_button, No_button = st.columns(2)
 
 ##ボタン押下時の処理
 if r_button.button("次へ"):
     st.session_state['page_control'] += 1
-if  r_button.button("リセット"):
+if  c_button.button("リセット"):
     st.session_state['page_control'] = 0
     st.session_state['upload'] = 0
     st.session_state['file_pick'] = False
@@ -47,7 +48,7 @@ if  r_button.button("リセット"):
     st.session_state['max_score_song'] = ''
     st.session_state['max_score'] = 0.0
     st.session_state['YorN'] = False
-if r_button.button("戻る"):
+if l_button.button("戻る"):
     st.session_state['page_control'] -= 1
 
 ##画面遷移0
@@ -231,10 +232,10 @@ if st.session_state['page_control'] == 11:
     voice_placeholder.markdown(song_html, unsafe_allow_html=True)
 
 
-    if l_button.button("正解"):
+    if Yes_button.button("正解"):
         st.session_state['YorN'] = True
         left.success("正解！")
-    if c_button.button("不正解"):
+    if No_button.button("不正解"):
         st.session_state['YorN'] = False
         left.error("不正解...")
         
