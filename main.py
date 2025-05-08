@@ -223,6 +223,7 @@ if st.session_state['page_control'] == 11:
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(song_html, unsafe_allow_html=True)
+    time.sleep(2.0)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 
