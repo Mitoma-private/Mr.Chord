@@ -84,8 +84,10 @@ def score_calculate(chord_time, est_labels, all_time):
         GT_all_time = float(last_line.split(" ")[1])
     
         ratio = GT_all_time / all_time
+        new_time = []
+        new_time.clear()
         for i in range(len(chord_time)):
-            chord_time[i] = chord_time[i] * ratio
+            new_time.append(chord_time[i] * ratio)
         
         start = 0.0
         end = 0.0
@@ -117,8 +119,3 @@ def root_score(GT_lab, est_intervals, est_labels):
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
 
     return score
-
-
-chord_time, chords, all_time =  chord_estimation("./シンデレラボーイ.wav")
-
-full_score, song_name = score_calculate(chord_time, chords, all_time)
