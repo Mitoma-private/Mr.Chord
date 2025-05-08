@@ -104,6 +104,7 @@ def score_calculate(chord_time, est_labels, all_time):
         full_score.append(score)
         ref_labels.append(ref_label)
         comparisons.append(comparison)
+        est_labels.append(est_label)
         
     return full_score, song_name, ref_labels, comparisons
 
