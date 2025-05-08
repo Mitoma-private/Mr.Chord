@@ -29,6 +29,8 @@ if 'max_score_song' not in st.session_state:
     st.session_state['max_score_song'] = ''
 if 'max_score' not in st.session_state:
     st.session_state['max_score'] = 0.0
+if 'YorN' not in st.session_state:
+    st.session_state['YorN'] = False
     
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
@@ -221,29 +223,30 @@ if st.session_state['page_control'] == 11:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+    if l_button.button("正解"):
+        st.session_state['YorN'] = True
+        st.success("正解！")
+    if c_button.button("不正解"):
+        st.session_state['YorN'] = False
+        st.error("不正解...")
+        
 if st.session_state['page_control'] == 12:
-    left.subheader("やったー！正解だね！")
-    right.image(config.happy, caption="コードさん", width=200)
+    if st.session_state['YorN']:
+        left.subheader("やったー！正解だね！")
+        right.image(config.happy, caption="コードさん", width=200)
+    else:
+        left.subheader("そっか...残念だね...")
+        right.image(config.sad, caption="コードさん", width=200)
+        
     
     #オーディオを回す処理
     voice_placeholder = st.empty()
-    voice_html = config.YorN_content(True)
+    voice_html = config.YorN_content(st.session_state['YorN'])
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     
 if st.session_state['page_control'] == 13:
-    left.subheader("そっか...残念だね...")
-    right.image(config.sad, caption="コードさん", width=200)
-    
-    #オーディオを回す処理
-    voice_placeholder = st.empty()
-    voice_html = config.YorN_content(False)
-    voice_placeholder.empty()
-    time.sleep(0.5)
-    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
-
-if st.session_state['page_control'] == 14:
     left.subheader("デモは以上になります。楽しんでくれたかな？")
     right.image(config.default, caption="コードさん", width=200)
     
@@ -254,7 +257,7 @@ if st.session_state['page_control'] == 14:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
-if st.session_state['page_control'] == 15:
+if st.session_state['page_control'] == 14:
     left.subheader("ということで、ここからは三苫君にバトンタッチするね")
     right.image(config.default, caption="コードさん", width=200)
     
@@ -265,7 +268,7 @@ if st.session_state['page_control'] == 15:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
-if st.session_state['page_control'] == 16:
+if st.session_state['page_control'] == 15:
     left.subheader("じゃあみんな、バイバーイ！")
     right.image(config.happy, caption="コードさん", width=200)
     
