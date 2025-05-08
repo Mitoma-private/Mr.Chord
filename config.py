@@ -28,3 +28,21 @@ def Voice_content(num):
                  """%voice_str
 
     return voice_html
+
+##音声ファイル
+def Voice_content_songs(song_name):
+    path = "./Voice/song"
+    
+    voice_file = path+song_name+".wav"
+    with open(voice_file, "rb")as f:
+        contents = f.read()
+        
+    voice_str = "data:audio/ogg;base64,%s"%(base64.b64encode(contents).decode())
+    voice_html = """
+                    <audio autoplay=True>
+                    <source src="%s" type="audio/ogg" autoplay=True>
+                    Your browser does not support the audio element.
+                    </audio> 
+                 """%voice_str
+
+    return voice_html
