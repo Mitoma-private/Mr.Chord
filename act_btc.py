@@ -99,7 +99,7 @@ def score_calculate(chord_time, est_labels, all_time):
 
         full_score.append(score)
         
-    return full_score, song_name, est_intervals, est_labels
+    return full_score, song_name, chord_time, ratio
 
 ##スコアの計算
 def root_score(GT_lab, est_intervals, est_labels):
