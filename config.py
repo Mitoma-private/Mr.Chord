@@ -43,18 +43,18 @@ def Voice_content_songs(num, song_name):
     with open(song_file, "rb")as f:
         contents_song = f.read()
         
-    voice_str = "data:audio/ogg;base64,%s"%(base64.b64encode(contents).decode())
-    song_str = "data:audio/ogg;base64,%s"%(base64.b64encode(contents_song).decode())
+    voice_str = (base64.b64encode(contents).decode())
+    song_str = (base64.b64encode(contents_song).decode())
 
     mime_type = "audio/wav"
     voice_html = """
                     <audio id="audio1" autoplay=True>
-                        <source src="{song_str}" type="audio/ogg" autoplay=True>
+                        <source src="data:{mime_type};base64,{song_str}" type="audio/ogg" autoplay=True>
                         Your browser does not support the audio element.
                     </audio> 
                     
                     <audio id="audio2">
-                        <source src="{voice_str}" type="audio/ogg" autoplay=True>
+                        <source src="data:{mime_type};base64,{voice_str}" type="audio/ogg" autoplay=True>
                         Your browser does not support the audio element.
                     </audio> 
                     
