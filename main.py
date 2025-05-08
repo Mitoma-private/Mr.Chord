@@ -221,3 +221,62 @@ if st.session_state['page_control'] == 11:
     time.sleep(3.0)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+    if l_button.button("正解"):
+        st.session_state['page_control'] += 1
+    if c_button.button("不正解"):
+        st.session_state['page_control'] += 2
+        
+if st.session_state['page_control'] == 12:
+    left.subheader("やったー！正解だね！")
+    right.image(config.happy, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.YorN_content(True)
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+    
+if st.session_state['page_control'] == 13:
+    left.subheader("そっか...残念だね...")
+    right.image(config.sad, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.YorN_content(False)
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
+if st.session_state['page_control'] == 14:
+    left.subheader("デモは以上になります。楽しんでくれたかな？")
+    right.image(config.default, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.YorN_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
+if st.session_state['page_control'] == 15:
+    left.subheader("ということで、ここからは三苫君にバトンタッチするね")
+    right.image(config.default, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.YorN_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
+if st.session_state['page_control'] == 16:
+    left.subheader("じゃあみんな、バイバーイ！")
+    right.image(config.happy, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.YorN_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
