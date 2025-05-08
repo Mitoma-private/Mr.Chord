@@ -68,7 +68,7 @@ def chord_estimation(audio_path):
             chord_time.append(end - start)
     all_time = sum(chord_time)
         
-    return chord_time, chords, all_time 
+    return chord_time, chords, all_time, feature.shape
 
 ##スコアの計算と一致率の比較
 def score_calculate(chord_time, est_labels, all_time):
@@ -119,7 +119,8 @@ def root_score(GT_lab, est_intervals, est_labels):
     return score
 
 
-chord_time, chords, all_time =  chord_estimation("./シンデレラボーイ.wav")
+chord_time, chords, all_time, feature =  chord_estimation("./シンデレラボーイ.wav")
 print(chord_time)
 print(chords)
+print(feature)
 full_score, song_name = score_calculate(chord_time, chords, all_time)
