@@ -212,19 +212,16 @@ if st.session_state['page_control'] == 10:
 
 ##画面遷移9
 if st.session_state['page_control'] == 11:
-    txt = st.session_state['max_score_song'].split("-")[-1] + "だね！"
+    txt = st.session_state['max_score_song'].split("-")[-1] + "!!!"
     left.subheader(txt)
     right.image(config.default, caption="コードさん", width=200)
     
     #オーディオを回す処理
     voice_placeholder = st.empty()
     song_html = config.Voice_content_songs(st.session_state['max_score_song'])
-    voice_html = config.Voice_content(st.session_state['page_control'])
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(song_html, unsafe_allow_html=True)
-    time.sleep(2.0)
-    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 
     if l_button.button("正解"):
