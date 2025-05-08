@@ -110,7 +110,7 @@ if st.session_state['page_control'] == 5:
     st.text(wav_file)
     st.text(st.session_state['upload'])
     if wav_file is not None:
-        st.session_state['upload'] = True
+        #st.session_state['upload'] = True
         filename = wav_file.name
         if filename.lower().endswith(".wav"):
             left.success("ファイルを取得しました")
