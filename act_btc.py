@@ -95,7 +95,7 @@ def score_calculate(chord_time, est_labels, all_time):
             est_intervals.append([round(start, 3), round(end, 3)])
         est_intervals = np.array(est_intervals)
     
-         score = root_score(GT_lab, est_intervals, est_labels)
+        score = root_score(GT_lab, est_intervals, est_labels)
 
         full_score.append(score)
         
