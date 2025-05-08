@@ -177,7 +177,3 @@ if st.session_state['page_control'] == 8:
         chord_time, chords, all_time, feature = chord_estimation(st.session_state['wav_file'])
         st.text(chord_time)
         full_score, song_name= score_calculate(chord_time, chords, all_time)
-
-    st.text(chords)
-    st.text(feature)
-    st.text(all_time)
