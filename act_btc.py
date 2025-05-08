@@ -94,7 +94,7 @@ def score_calculate(chord_time, est_labels, all_time):
             est_intervals.append([round(start, 3), round(end, 3)])
         est_intervals = np.array(est_intervals)
         if len(est_intervals) != len(est_labels):
-            return 0, song_name
+            return 0, GT_lab
         
         (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
         ref_labels = lab_file_error_modify(ref_labels)
