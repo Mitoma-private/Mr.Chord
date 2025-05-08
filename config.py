@@ -49,13 +49,12 @@ def Voice_content_songs(num, song_name):
     mime_type = "audio/wav"
     voice_html = """
                     <audio id="audio1" autoplay=True>
-                        <source src="data:{mime_type};base64,{song_str}" type="audio/ogg" autoplay=True>
+                        <source src="data:{mime_type};base64,{song_str}" type="{mime_type}">
                         Your browser does not support the audio element.
                     </audio> 
                     
                     <audio id="audio2">
-                        <source src="data:{mime_type};base64,{voice_str}" type="audio/ogg" autoplay=True>
-                        Your browser does not support the audio element.
+                        <source src="data:{mime_type};base64,{voice_str}" type="{mime_type}">
                     </audio> 
                     
                     <script>
