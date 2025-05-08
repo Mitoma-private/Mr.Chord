@@ -42,10 +42,24 @@ if st.session_state['page_control'] == 1:
 if st.session_state['page_control'] == 2:
     left.subheader("今から曲あてクイズをやってみよう!")
     right.image(config.default, caption="コードさん", width=200)
+    
+    ##オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 if st.session_state['page_control'] == 3:
     left.subheader("15曲の中から好きな曲を選んでね!")
     right.image(config.default, caption="コードさん", width=200)
+
+    ##オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
     data_df = pd.DataFrame(
         {
