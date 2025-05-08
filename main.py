@@ -122,8 +122,8 @@ if st.session_state['page_control'] == 5:
     
 if st.session_state['page_control'] == 6:
     if st.session_state['file_pick'] == False:
-        st.session_state['page_control'] -= 1
-
+        st.error("ファイルを選んでください")
+        st.stop()
     left.subheader("ファイルを読み込んだよ")
     right.image(config.default, caption="コードさん", width=200)
     
