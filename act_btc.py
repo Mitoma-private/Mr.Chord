@@ -81,7 +81,7 @@ def score_calculate(chord_time, est_labels, all_time):
         GT_all_time = float(last_line.split(" ")[1])
     
         ratio = GT_all_time / all_time
-        for i in range(chord_time):
+        for i in range(len(chord_time)):
             chord_time[i] = chord_time[i] * ratio
         
         start = 0.0
