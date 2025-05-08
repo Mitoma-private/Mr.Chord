@@ -22,7 +22,7 @@ if 'upload' not in st.session_state:
 if 'file_pick' not in st.session_state:
     st.session_state['file_pick'] = False
 if 'wav_file' not in st.session_state:
-    st.session_state['wav_file'] = ""
+    st.session_state['wav_file'] = "まだ何も入ってないよ"
     
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
