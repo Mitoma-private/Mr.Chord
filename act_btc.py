@@ -2,6 +2,7 @@ import os
 from btc_model import *
 from utils.mir_eval_modules import audio_file_to_features, idx2chord
 import glob
+import mir_eval
 
 ##パラメータ
 config = HParams.load("run_config.yaml")
@@ -71,7 +72,7 @@ def score_calculate(chord_time, est_labels, all_time):
     GT_labs = glob.glob("./GT_labs/*")
     best_acc = 0
     
-    end_time = []
+    full_score = []
     song_name = []
     for GT_lab in GT_labs:
         song_name.append(GT_lab.split("/")[-1].replace(".lab", ""))
@@ -91,5 +92,40 @@ def score_calculate(chord_time, est_labels, all_time):
             start = end
             end = start + chord_time[i]
             est_interval.append([round(start, 3), round(end, 3)])
-        break
-    return est_interval, est_labels
+        
+        (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
+        ref_labels = lab_file_error_modify(ref_labels)
+        est_intervals, est_labels = mir_eval.util.adjust_intervals(est_intervals, est_labels, ref_intervals.min(),
+                                                                   ref_intervals.max(), mir_eval.chord.NO_CHORD,
+                                                                   mir_eval.chord.NO_CHORD)
+        (intervals, ref_labels, est_labels) = mir_eval.util.merge_labeled_intervals(ref_intervals, ref_labels,
+                                                                                    est_intervals, est_labels)
+        durations = mir_eval.util.intervals_to_durations(intervals)
+        comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
+        score = mir_eval.chord.weighted_accuracy(comparisons, durations)
+
+        full_score.append(score)
+        
+    return full_score, song_name
+
+##よくわかんないけど引っ張ってきたやつ
+def lab_file_error_modify(ref_labels):
+    for i in range(len(ref_labels)):
+        if ref_labels[i][-2:] == ':4':
+            ref_labels[i] = ref_labels[i].replace(':4', ':sus4')
+        elif ref_labels[i][-2:] == ':6':
+            ref_labels[i] = ref_labels[i].replace(':6', ':maj6')
+        elif ref_labels[i][-4:] == ':6/2':
+            ref_labels[i] = ref_labels[i].replace(':6/2', ':maj6/2')
+        elif ref_labels[i] == 'Emin/4':
+            ref_labels[i] = 'E:min/4'
+        elif ref_labels[i] == 'A7/3':
+            ref_labels[i] = 'A:7/3'
+        elif ref_labels[i] == 'Bb7/3':
+            ref_labels[i] = 'Bb:7/3'
+        elif ref_labels[i] == 'Bb7/5':
+            ref_labels[i] = 'Bb:7/5'
+        elif ref_labels[i].find(':') == -1:
+            if ref_labels[i].find('min') != -1:
+                ref_labels[i] = ref_labels[i][:ref_labels[i].find('min')] + ':' + ref_labels[i][ref_labels[i].find('min'):]
+    return ref_labels
