@@ -216,7 +216,7 @@ if st.session_state['page_control'] == 11:
     
     #オーディオを回す処理
     voice_placeholder = st.empty()
-    voice_html = config.Voice_content_song(st.session_state['max_score_song'])
+    voice_html = config.Voice_content_songs(st.session_state['max_score_song'])
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
