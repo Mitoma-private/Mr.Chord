@@ -82,4 +82,24 @@ if st.session_state['page_control'] == 3:
     )
     left.dataframe(data_df)
 
+if st.session_state['page_control'] == 4:
+    left.subheader("じゃあ、次は実際に曲を演奏してみよう")
+    right.image(config.default, caption="コードさん", width=200)
+    
+    ##オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
+if st.session_state['page_control'] == 5:
+    left.subheader("演奏は終わったかな？じゃあ、そのファイルを私に頂戴！")
+    right.image(config.happy, caption="コードさん", width=200)
+    
+    ##オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
