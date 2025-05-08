@@ -95,11 +95,11 @@ def score_calculate(chord_time, est_labels, all_time):
             est_intervals.append([round(start, 3), round(end, 3)])
         est_intervals = np.array(est_intervals)
     
-        score = root_score(GT_lab, est_intervals, est_labels)
+        score, durations, comparisons = root_score(GT_lab, est_intervals, est_labels)
 
         full_score.append(score)
         
-    return full_score, song_name, chord_time, ratio
+    return full_score, song_name, durations, comparisons
 
 ##スコアの計算
 def root_score(GT_lab, est_intervals, est_labels):
@@ -114,7 +114,7 @@ def root_score(GT_lab, est_intervals, est_labels):
     comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
 
-    return score
+    return score, durations, comparisons
 
 ##よくわかんないけど引っ張ってきたやつ
 def lab_file_error_modify(ref_labels):
