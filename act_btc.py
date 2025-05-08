@@ -118,4 +118,4 @@ def root_score(GT_lab, est_intervals, est_labels):
     comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
 
-    return score, est_labels, comparisons
+    return score, ref_labels , est_labels
