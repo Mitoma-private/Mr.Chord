@@ -221,11 +221,6 @@ if st.session_state['page_control'] == 11:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
-    if l_button.button("正解"):
-        st.session_state['page_control'] += 1
-    if c_button.button("不正解"):
-        st.session_state['page_control'] += 2
-        
 if st.session_state['page_control'] == 12:
     left.subheader("やったー！正解だね！")
     right.image(config.happy, caption="コードさん", width=200)
