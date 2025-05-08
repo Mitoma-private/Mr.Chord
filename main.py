@@ -24,6 +24,7 @@ if r_button.button("次へ"):
     st.session_state['page_control'] += 1
 if  r_button.button("リセット"):
     st.session_state['page_control'] = 0
+    st.session_state['upload'] = 0
 
 if st.session_state['page_control'] == 0:
     right.image(config.default, caption="コードさん", width=200)
