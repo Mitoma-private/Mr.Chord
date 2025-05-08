@@ -21,6 +21,8 @@ if 'upload' not in st.session_state:
     st.session_state['upload'] = 0
 if 'file_pick' not in st.session_state:
     st.session_state['file_pick'] = False
+if 'wav_file' not in st.session_state:
+    st.session_state['wav_file'] = ""
     
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
@@ -113,8 +115,8 @@ if st.session_state['page_control'] == 5:
     wav_file = left.file_uploader("音楽ファイルをアップロード", type=None)
     if wav_file is not None:
         st.session_state['upload'] += 1
-        filename = wav_file.name
-        if filename.lower().endswith(".wav"):
+        st.session_state['wav_file'] = wav_file.name
+        if st.session_state['wav_file'].lower().endswith(".wav"):
             left.success("ファイルを取得しました")
             st.session_state['file_pick'] = True
         else:
