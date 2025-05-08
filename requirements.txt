@@ -4,4 +4,4 @@ mir_eval
 sortedcontainers
 numpy
 streamlit
-yaml
+pyyaml
