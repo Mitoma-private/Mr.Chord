@@ -182,6 +182,7 @@ if st.session_state['page_control'] == 8:
         full_score, song_name= score_calculate(chord_time, chords, all_time)
         st.session_state['max_score'] = full_score
         st.session_state['max_score_song'] = song_name
+        st.success("推定が終了しました")
     
 ##画面遷移9
 if st.session_state['page_control'] == 9:
