@@ -7,6 +7,7 @@ import time
 import config
 import base64
 from act_btc import chord_estimation
+from io import BytesIO
 
 os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
 
@@ -119,7 +120,7 @@ if st.session_state['page_control'] == 5:
         if filename.lower().endswith(".wav"):
             left.success("ファイルを取得しました")
             st.session_state['file_pick'] = True
-            st.session_state['wav_file'] = filename
+            st.session_state['wav_file'] = wav_file
         else:
             left.error("wavファイルをアップロードしてください")
 
@@ -174,7 +175,8 @@ if st.session_state['page_control'] == 8:
     
     st.text(st.session_state['wav_file'])
     with st.spinner("処理中です..."):
-        chord_lines = chord_estimation(st.session_state["wav_file"])
+        audio_byte = BytesIO(st.session_state["wav_file"].read())
+        chord_lines = chord_estimation(audio_byte)
     st.text(chord_lines)
     
 
