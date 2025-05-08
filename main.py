@@ -42,6 +42,13 @@ if r_button.button("次へ"):
 if  r_button.button("リセット"):
     st.session_state['page_control'] = 0
     st.session_state['upload'] = 0
+    st.session_state['file_pick'] = False
+    st.session_state['wav_file'] = "まだ何も入ってないよ"
+    st.session_state['max_score_song'] = ''
+    st.session_state['max_score'] = 0.0
+    st.session_state['YorN'] = False
+if r_button.button("戻る"):
+    st.session_state['page_control'] -= 1
 
 ##画面遷移0
 if st.session_state['page_control'] == 0:
