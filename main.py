@@ -227,6 +227,15 @@ if st.session_state['page_control'] == 11:
     left.subheader(txt)
     right.image(config.default, caption="コードさん", width=200)
     
+    if Yes_button.button("正解"):
+        st.session_state['YorN'] = True
+        left.success("正解！")
+        st.session_state['push_YorN'] += 1
+    if No_button.button("不正解"):
+        st.session_state['YorN'] = False
+        left.error("不正解...")
+        st.session_state['push_YorN'] += 1
+
     if st.session_state['push_YorN'] == 0:
         #オーディオを回す処理
         voice_placeholder = st.empty()
@@ -234,15 +243,6 @@ if st.session_state['page_control'] == 11:
         voice_placeholder.empty()
         time.sleep(0.5)
         voice_placeholder.markdown(song_html, unsafe_allow_html=True)
-        st.session_state['push_YorN'] += 1
-
-
-    if Yes_button.button("正解"):
-        st.session_state['YorN'] = True
-        left.success("正解！")
-    if No_button.button("不正解"):
-        st.session_state['YorN'] = False
-        left.error("不正解...")
         
 if st.session_state['page_control'] == 12:
     if st.session_state['YorN']:
