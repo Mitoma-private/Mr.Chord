@@ -13,16 +13,15 @@ st.text("コードさんはピアノ音源を読み込ませることでそれ�
 ##変数の設定
 if 'page_control' not in st.session_state:
     st.session_state['page_control'] = 0
-disable_button = False
 
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
 l_button, c_button, r_button = st.columns(3)
 
 ##ボタン押下時の処理
-if r_button.button("次へ", disabled=disable_button):
+if r_button.button("次へ"):
     st.session_state['page_control'] += 1
-if  r_button.button("リセット", disabled=disable_button):
+if  r_button.button("リセット"):
     st.session_state['page_control'] = 0
 
 if st.session_state['page_control'] == 0:
@@ -95,11 +94,14 @@ if st.session_state['page_control'] == 4:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 if st.session_state['page_control'] == 5:
-    disable_button = True
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
-    wav_file = left.file_uploader("wavファイルを渡そう")
+    wav_file = left.file_uploader()
     if wav_file:
-        disable_button = False
+        filename = wav_file.name
+        if filename.lower().endswith(".wav"):
+            left.success("ファイルを取得しました")
+        else:
+            left.error("wavファイルをアップロードしてください")
     right.image(config.happy, caption="コードさん", width=200)
     
     ##オーディオを回す処理
