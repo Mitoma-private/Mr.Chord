@@ -2,6 +2,6 @@ librosa
 torch
 mir_eval
 sortedcontainers
-numpy
+numpy==1.23
 streamlit
 pyyaml
