@@ -94,23 +94,27 @@ def score_calculate(chord_time, est_labels, all_time):
             end = start + chord_time[j]
             est_intervals.append([round(start, 3), round(end, 3)])
         est_intervals = np.array(est_intervals)
-        if len(est_intervals) != len(est_labels):
-            return est_intervals, est_labels 
-        
-        (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
-        ref_labels = lab_file_error_modify(ref_labels)
-        est_intervals, est_labels = mir_eval.util.adjust_intervals(est_intervals, est_labels, ref_intervals.min(),
-                                                                   ref_intervals.max(), mir_eval.chord.NO_CHORD,
-                                                                   mir_eval.chord.NO_CHORD)
-        (intervals, ref_labels, est_labels) = mir_eval.util.merge_labeled_intervals(ref_intervals, ref_labels,
-                                                                                    est_intervals, est_labels)
-        durations = mir_eval.util.intervals_to_durations(intervals)
-        comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
-        score = mir_eval.chord.weighted_accuracy(comparisons, durations)
+    
+        score = root_score(GT_lab, est_intervals, est_labels)
 
         full_score.append(score)
         
     return full_score, song_name
+
+##スコアの計算
+def root_score(GT_lab, est_intervals, est_labels):
+    (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
+    ref_labels = lab_file_error_modify(ref_labels)
+    est_intervals, est_labels = mir_eval.util.adjust_intervals(est_intervals, est_labels, ref_intervals.min(),
+                                                                ref_intervals.max(), mir_eval.chord.NO_CHORD,
+                                                                mir_eval.chord.NO_CHORD)
+    (intervals, ref_labels, est_labels) = mir_eval.util.merge_labeled_intervals(ref_intervals, ref_labels,
+                                                                                est_intervals, est_labels)
+    durations = mir_eval.util.intervals_to_durations(intervals)
+    comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
+    score = mir_eval.chord.weighted_accuracy(comparisons, durations)
+
+    return score
 
 ##よくわかんないけど引っ張ってきたやつ
 def lab_file_error_modify(ref_labels):
