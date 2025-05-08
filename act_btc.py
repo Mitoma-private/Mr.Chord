@@ -87,11 +87,11 @@ def score_calculate(chord_time, est_labels, all_time):
         
         start = 0.0
         end = 0.0
-        est_interval = []
+        est_intervals = []
         for i in range(len(est_labels)):
             start = end
             end = start + chord_time[i]
-            est_interval.append([round(start, 3), round(end, 3)])
+            est_intervals.append([round(start, 3), round(end, 3)])
         
         (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
         ref_labels = lab_file_error_modify(ref_labels)
