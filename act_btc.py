@@ -109,7 +109,6 @@ def score_calculate(chord_time, est_labels, all_time):
 ##スコアの計算
 def root_score(GT_lab, est_intervals, est_labels):
     (ref_intervals, ref_labels) = mir_eval.io.load_labeled_intervals(GT_lab)
-    ref_labels = lab_file_error_modify(ref_labels)
     est_intervals, est_labels = mir_eval.util.adjust_intervals(est_intervals, est_labels, ref_intervals.min(),
                                                                 ref_intervals.max(), mir_eval.chord.NO_CHORD,
                                                                 mir_eval.chord.NO_CHORD)
@@ -120,25 +119,3 @@ def root_score(GT_lab, est_intervals, est_labels):
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
 
     return score, ref_labels, comparisons
-
-##よくわかんないけど引っ張ってきたやつ
-def lab_file_error_modify(ref_labels):
-    for i in range(len(ref_labels)):
-        if ref_labels[i][-2:] == ':4':
-            ref_labels[i] = ref_labels[i].replace(':4', ':sus4')
-        elif ref_labels[i][-2:] == ':6':
-            ref_labels[i] = ref_labels[i].replace(':6', ':maj6')
-        elif ref_labels[i][-4:] == ':6/2':
-            ref_labels[i] = ref_labels[i].replace(':6/2', ':maj6/2')
-        elif ref_labels[i] == 'Emin/4':
-            ref_labels[i] = 'E:min/4'
-        elif ref_labels[i] == 'A7/3':
-            ref_labels[i] = 'A:7/3'
-        elif ref_labels[i] == 'Bb7/3':
-            ref_labels[i] = 'Bb:7/3'
-        elif ref_labels[i] == 'Bb7/5':
-            ref_labels[i] = 'Bb:7/5'
-        elif ref_labels[i].find(':') == -1:
-            if ref_labels[i].find('min') != -1:
-                ref_labels[i] = ref_labels[i][:ref_labels[i].find('min')] + ':' + ref_labels[i][ref_labels[i].find('min'):]
-    return ref_labels
