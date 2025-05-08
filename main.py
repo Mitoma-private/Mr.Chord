@@ -175,8 +175,9 @@ if st.session_state['page_control'] == 8:
     
     with st.spinner("処理中です..."):
         chord_time, chords, all_time, feature = chord_estimation(st.session_state['wav_file'])
+        st.text(chord_time)
         full_score, song_name= score_calculate(chord_time, chords, all_time)
-    st.text(sum(chord_time))
+
     st.text(chords)
     st.text(feature)
     st.text(all_time)
