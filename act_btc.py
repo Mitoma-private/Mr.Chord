@@ -51,4 +51,20 @@ def chord_estimation(audio_path):
                         lines.append('%.3f %.3f %s\n' % (start_time, time_unit * (n_timestep * t + i), idx_to_chord[prev_chord]))
                     break
 
-    return lines
+    chord_time = []
+    chords = []
+    for line in lines:
+        l = line.split("\t")
+        start = float(l[0])
+        end = float(l[1])
+        chord = l[2].replace("\n", "")
+        if not chord == "N":
+            chords.append(chord)
+            chord_time.append(end - start)
+    all_time = sum(chord_time)
+        
+    return chord_time, chords, all_time 
+
+##スコアの計算と一致率の比較
+def score_calculate(lines):
+    pass

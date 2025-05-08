@@ -174,7 +174,9 @@ if st.session_state['page_control'] == 8:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     
     with st.spinner("処理中です..."):
-        chord_lines = chord_estimation(st.session_state['wav_file'])
-    st.text(chord_lines)
+        chord_time, chords, all_time = chord_estimation(st.session_state['wav_file'])
+    left.text(chord_time)
+    left.text(chords)
+    left.text(all_time)
     
 
