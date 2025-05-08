@@ -6,7 +6,7 @@ import streamlit.components.v1 as stc
 import time
 import config
 import base64
-from act_btc import chord_estimation
+from act_btc import chord_estimation, score_calculate
 from io import BytesIO
 
 os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
@@ -175,8 +175,8 @@ if st.session_state['page_control'] == 8:
     
     with st.spinner("処理中です..."):
         chord_time, chords, all_time = chord_estimation(st.session_state['wav_file'])
-    left.text(chord_time)
-    left.text(chords)
-    left.text(all_time)
+        est_interbal, est_labels = score_calculate(chord_time, chords, all_time)
+    left.text(est_interbal)
+    left.text(est_labels)
     
 

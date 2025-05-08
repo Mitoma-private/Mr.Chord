@@ -1,6 +1,7 @@
 import os 
 from btc_model import *
 from utils.mir_eval_modules import audio_file_to_features, idx2chord
+import glob
 
 ##パラメータ
 config = HParams.load("run_config.yaml")
@@ -66,5 +67,29 @@ def chord_estimation(audio_path):
     return chord_time, chords, all_time 
 
 ##スコアの計算と一致率の比較
-def score_calculate(lines):
-    pass
+def score_calculate(chord_time, est_labels, all_time):
+    GT_labs = glob.glob("./GT_labs/*")
+    best_acc = 0
+    
+    end_time = []
+    song_name = []
+    for GT_lab in GT_labs:
+        song_name.append(GT_lab.split("/")[-1].replace(".lab", ""))
+        with open(GT_lab, "r")as f:
+            lines = f.readlines()
+            last_line = lines[-1]
+        GT_all_time = float(last_line.split(" ")[1])
+    
+        ratio = GT_all_time / all_time
+        for i in range(chord_time):
+            chord_time[i] = chord_time[i] * ratio
+        
+        start = 0.0
+        end = 0.0
+        est_interval = []
+        for i in range(len(chords)):
+            start = end
+            end = start + chord_time[i]
+            est_interval.append([round(start, 3), round(end, 3)])
+        break
+    return est_interval, est_labels
