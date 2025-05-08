@@ -3,6 +3,9 @@ from btc_model import *
 from utils.mir_eval_modules import audio_file_to_features, idx2chord
 import glob
 import mir_eval
+import warnings
+
+warnings.filterwarnings('ignore')
 
 ##パラメータ
 config = HParams.load("run_config.yaml")
@@ -71,11 +74,10 @@ def chord_estimation(audio_path):
 def score_calculate(chord_time, est_labels, all_time):
     GT_labs = glob.glob("./GT_labs/*")
     best_acc = 0
+    best_song = ""
     
-    full_score = []
-    song_name = []
     for GT_lab in GT_labs:
-        song_name.append(GT_lab.split("/")[-1].replace(".lab", ""))
+        song_name = (GT_lab.split("/")[-1].replace(".lab", ""))
         with open(GT_lab, "r")as f:
             lines = f.readlines()
             last_line = lines[-1]
@@ -96,10 +98,11 @@ def score_calculate(chord_time, est_labels, all_time):
         est_intervals = np.array(est_intervals)
     
         score = root_score(GT_lab, est_intervals, est_labels)
-
-        full_score.append(score)
+        if score > best_acc:
+            best_acc = score
+            best_song = song_name
         
-    return full_score, song_name
+    return best_acc, best_song
 
 ##スコアの計算
 def root_score(GT_lab, est_intervals, est_labels):
@@ -112,5 +115,14 @@ def root_score(GT_lab, est_intervals, est_labels):
     durations = mir_eval.util.intervals_to_durations(intervals)
     comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
+    print(durations)
+    print(comparisons)
+    print(score)
 
     return score
+
+
+chord_time, chords, all_time =  chord_estimation("./シンデレラボーイ.wav")
+print(chord_time)
+print(chords)
+full_score, song_name = score_calculate(chord_time, chords, all_time)
