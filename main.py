@@ -178,5 +178,6 @@ if st.session_state['page_control'] == 8:
         full_score, song_name = score_calculate(chord_time, chords, all_time)
     left.text(full_score)
     left.text(song_name)
+    left.text(full_score)
     
 
