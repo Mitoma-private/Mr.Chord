@@ -178,4 +178,6 @@ if st.session_state['page_control'] == 8:
         full_score, song_name, ref_labels, comparisons= score_calculate(chord_time, chords, all_time)
     left.text(ref_labels)
     left.text(comparisons)
+    st.text(full_score)
+    st.text(song_name)
 
