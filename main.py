@@ -108,6 +108,7 @@ if st.session_state['page_control'] == 5:
 
     wav_file = left.file_uploader("音楽ファイルをアップロード")
     st.text(wav_file)
+    st.text(st.session_state['upload'])
     if wav_file is not None:
         st.session_state['upload'] = True
         filename = wav_file.name
