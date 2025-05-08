@@ -88,9 +88,10 @@ def score_calculate(chord_time, est_labels, all_time):
         start = 0.0
         end = 0.0
         est_intervals = []
-        for i in range(len(chord_time)):
+        est_intervals.clear()
+        for j in range(len(chord_time)):
             start = end
-            end = start + chord_time[i]
+            end = start + chord_time[j]
             est_intervals.append([round(start, 3), round(end, 3)])
         est_intervals = np.array(est_intervals)
         if len(est_intervals) != len(est_labels):
