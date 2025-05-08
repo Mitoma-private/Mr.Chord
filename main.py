@@ -94,7 +94,8 @@ if st.session_state['page_control'] == 4:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 if st.session_state['page_control'] == 5:
-    left.subheader("演奏は終わったかな？じゃあ、そのファイルを私に頂戴！")
+    left.subheader("演奏は終わったかな？")
+    left.subheader("そしたら、そのファイルを私に頂戴！")
     right.image(config.happy, caption="コードさん", width=200)
     
     ##オーディオを回す処理
