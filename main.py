@@ -197,7 +197,7 @@ if st.session_state['page_control'] == 9:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 ##画面遷移10
-if st.session_state['page_control'] == 9:
+if st.session_state['page_control'] == 10:
     left.subheader("君の選んだ曲は...")
     right.image(config.default, caption="コードさん", width=200)
     
