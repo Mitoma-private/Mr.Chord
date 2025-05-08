@@ -120,7 +120,7 @@ if st.session_state['page_control'] == 5:
         if filename.lower().endswith(".wav"):
             left.success("ファイルを取得しました")
             st.session_state['file_pick'] = True
-            st.session_state['wav_file'] = wav_file
+            st.session_state['wav_file'] = BytesIO(wav_file.read())
         else:
             left.error("wavファイルをアップロードしてください")
 
@@ -175,8 +175,7 @@ if st.session_state['page_control'] == 8:
     
     st.text(st.session_state['wav_file'])
     with st.spinner("処理中です..."):
-        audio_byte = BytesIO(st.session_state["wav_file"].read())
-        chord_lines = chord_estimation(audio_byte)
+        chord_lines = chord_estimation(st.session_state['wav_file'])
     st.text(chord_lines)
     
 
