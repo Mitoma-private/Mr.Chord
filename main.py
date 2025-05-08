@@ -95,7 +95,7 @@ if st.session_state['page_control'] == 4:
 
 if st.session_state['page_control'] == 5:
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
-    wav_file = left.file_uploader(type=None)
+    wav_file = left.file_uploader("音楽ファイルをアップロード",type=None)
     if wav_file is not None:
         filename = wav_file.name
         if filename.lower().endswith(".wav"):
