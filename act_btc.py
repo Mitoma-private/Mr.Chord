@@ -54,7 +54,7 @@ def chord_estimation(audio_path):
     chord_time = []
     chords = []
     for line in lines:
-        l = line.split("\t")
+        l = line.split(" ")
         start = float(l[0])
         end = float(l[1])
         chord = l[2].replace("\n", "")
