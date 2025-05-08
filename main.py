@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -6,6 +7,8 @@ import time
 import config
 import base64
 from act_btc import chord_estimation
+
+os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
 
 ##タイトル
 st.title("曲当てロボット コードさん")
