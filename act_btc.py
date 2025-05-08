@@ -68,7 +68,7 @@ def chord_estimation(audio_path):
             chord_time.append(end - start)
     all_time = sum(chord_time)
         
-    return chord_time, chords, all_time, feature.shape
+    return chord_time, chords, all_time, lines
 
 ##スコアの計算と一致率の比較
 def score_calculate(chord_time, est_labels, all_time):
