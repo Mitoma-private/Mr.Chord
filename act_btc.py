@@ -31,7 +31,7 @@ def chord_estimation(audio_path):
     
     start_time = 0.0
     lines = []
-    with torch.no_grad:
+    with torch.no_grad():
         model.eval()
         feature = torch.tensor(feature, dtype=torch.float32).unsqueeze(0).to(device)
         for t in range(num_instance):
