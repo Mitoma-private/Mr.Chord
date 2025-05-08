@@ -98,7 +98,8 @@ def score_calculate(chord_time, est_labels, all_time):
     
         ref_labels = []
         comparisons = []
-        score, ref_label, comparison = root_score(GT_lab, est_intervals, est_labels)
+        est_labels = []
+        score, ref_label, est_label, comparison = root_score(GT_lab, est_intervals, est_labels)
 
         full_score.append(score)
         ref_labels.append(ref_label)
@@ -118,4 +119,4 @@ def root_score(GT_lab, est_intervals, est_labels):
     comparisons = mir_eval.chord.majmin(ref_labels, est_labels)
     score = mir_eval.chord.weighted_accuracy(comparisons, durations)
 
-    return score, ref_labels , est_labels
+    return score, ref_labels , est_labels, durations
