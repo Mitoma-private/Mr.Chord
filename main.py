@@ -281,5 +281,6 @@ if st.session_state['page_control'] == 15:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
 if st.session_state['page_control'] == 16:
-    st.header("終わり")
+    left.header("終わり")
+    right.image(config.happy, caption="コードさん", width=200)
     st.stop()
