@@ -97,13 +97,6 @@ if st.session_state['page_control'] == 4:
 
 if st.session_state['page_control'] == 5:
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
-    if st.session_state['upload'] == 0:
-        ##オーディオを回す処理
-        voice_placeholder = st.empty()
-        voice_html = config.Voice_content(st.session_state['page_control'])
-        voice_placeholder.empty()
-        time.sleep(0.5)
-        voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
     wav_file = left.file_uploader("音楽ファイルをアップロード", type=None)
     st.text(st.session_state['upload'])
@@ -115,5 +108,12 @@ if st.session_state['page_control'] == 5:
         else:
             left.error("wavファイルをアップロードしてください")
 
+    if st.session_state['upload'] == 0:
+        ##オーディオを回す処理
+        voice_placeholder = st.empty()
+        voice_html = config.Voice_content(st.session_state['page_control'])
+        voice_placeholder.empty()
+        time.sleep(0.5)
+        voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     right.image(config.happy, caption="コードさん", width=200)
     
