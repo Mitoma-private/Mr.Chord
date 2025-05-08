@@ -31,8 +31,7 @@ def Voice_content(num):
 
 ##音声ファイル
 def Voice_content_songs(song_name):
-    path = "./Voice/song"
-    
+    path = "./Voice/song/"
     voice_file = path+song_name+".wav"
     with open(voice_file, "rb")as f:
         contents = f.read()
