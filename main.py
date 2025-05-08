@@ -107,6 +107,7 @@ if st.session_state['page_control'] == 5:
         voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
     wav_file = left.file_uploader("音楽ファイルをアップロード")
+    st.text(wav_file)
     if wav_file:
         st.session_state['upload'] = True
         filename = wav_file.name
