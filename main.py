@@ -108,11 +108,11 @@ if st.session_state['page_control'] == 5:
 
     wav_file = left.file_uploader("音楽ファイルをアップロード",type=None)
     if wav_file is not None:
+        st.session_state['upload'] = True
         filename = wav_file.name
         if filename.lower().endswith(".wav"):
             left.success("ファイルを取得しました")
         else:
             left.error("wavファイルをアップロードしてください")
-        st.session_state['upload'] = True
     right.image(config.happy, caption="コードさん", width=200)
     
