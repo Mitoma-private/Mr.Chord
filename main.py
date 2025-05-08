@@ -278,3 +278,7 @@ if st.session_state['page_control'] == 15:
     voice_placeholder.empty()
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
+if st.session_state['page_control'] == 16:
+    st.header("終わり")
+    st.stop()
