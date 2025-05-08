@@ -178,5 +178,6 @@ if st.session_state['page_control'] == 8:
         est_interbal, est_labels = score_calculate(chord_time, chords, all_time)
     left.text(est_interbal)
     left.text(est_labels)
+    st.text(chord_time)
     
 
