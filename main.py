@@ -8,6 +8,7 @@ import config
 import base64
 from act_btc import chord_estimation, score_calculate
 from io import BytesIO
+import tempfile
 
 os.environ["STREAMLIT_DISABLE_WATCHDOG_WARNINGS"] = "true"
 
@@ -113,16 +114,15 @@ if st.session_state['page_control'] == 4:
 if st.session_state['page_control'] == 5:
     left.subheader("演奏は終わったかな？そしたら、そのファイルを私に頂戴！")
 
-    wav_file = left.file_uploader("音楽ファイルをアップロード", type=None)
+    wav_file = left.file_uploader("音楽ファイルをアップロード", type=["wav", "mp3", "flac"])
     if wav_file is not None:
         st.session_state['upload'] += 1
-        filename = wav_file.name
-        if filename.lower().endswith(".wav"):
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav")as tmp:
+            tmp.write(wav_file.read())
+            tmp_path = tmp.name
             left.success("ファイルを取得しました")
             st.session_state['file_pick'] = True
-            st.session_state['wav_file'] = BytesIO(wav_file.read())
-        else:
-            left.error("wavファイルをアップロードしてください")
+            st.session_state['wav_file'] = tmp_path
 
     if st.session_state['upload'] == 0:
         ##オーディオを回す処理
