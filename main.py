@@ -25,6 +25,10 @@ if 'file_pick' not in st.session_state:
     st.session_state['file_pick'] = False
 if 'wav_file' not in st.session_state:
     st.session_state['wav_file'] = "まだ何も入ってないよ"
+if 'max_score_song' not in st.session_state:
+    st.session_state['max_score_song'] = ''
+if 'max_score' not in st.session_state:
+    st.session_state['max_score'] = 0.0
     
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
@@ -176,5 +180,29 @@ if st.session_state['page_control'] == 8:
     with st.spinner("処理中です..."):
         chord_time, chords, all_time = chord_estimation(st.session_state['wav_file'])
         full_score, song_name= score_calculate(chord_time, chords, all_time)
-    left.text(full_score)
-    left.text(song_name)
+        st.session_state['max_score'] = full_score
+        st.session_state['max_score_song'] = song_name
+    
+##画面遷移9
+if st.session_state['page_control'] == 9:
+    left.subheader("推定が完了したよ")
+    right.image(config.default, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
+##画面遷移10
+if st.session_state['page_control'] == 9:
+    left.subheader("君の選んだ曲は...")
+    right.image(config.default, caption="コードさん", width=200)
+    
+    #オーディオを回す処理
+    voice_placeholder = st.empty()
+    voice_html = config.Voice_content(st.session_state['page_control'])
+    voice_placeholder.empty()
+    time.sleep(0.5)
+    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
