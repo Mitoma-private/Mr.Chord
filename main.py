@@ -106,9 +106,7 @@ if st.session_state['page_control'] == 5:
         time.sleep(0.5)
         voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
-    wav_file = left.file_uploader("音楽ファイルをアップロード")
-    st.text(wav_file)
-    st.text(st.session_state['upload'])
+    wav_file = left.file_uploader("音楽ファイルをアップロード", type=None)
     if wav_file is not None:
         st.session_state['upload'] += 1
         filename = wav_file.name
@@ -116,5 +114,6 @@ if st.session_state['page_control'] == 5:
             left.success("ファイルを取得しました")
         else:
             left.error("wavファイルをアップロードしてください")
+
     right.image(config.happy, caption="コードさん", width=200)
     
