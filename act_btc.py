@@ -88,7 +88,7 @@ def score_calculate(chord_time, est_labels, all_time):
         start = 0.0
         end = 0.0
         est_intervals = []
-        for i in range(len(est_labels)):
+        for i in range(len(chord_time)):
             start = end
             end = start + chord_time[i]
             est_intervals.append([round(start, 3), round(end, 3)])
