@@ -32,7 +32,7 @@ if 'max_score' not in st.session_state:
 if 'YorN' not in st.session_state:
     st.session_state['YorN'] = False
 if 'push_YorN' not in st.session_state:
-    st.session_state['push_YorN'] = False
+    st.session_state['push_YorN'] = 0
     
 ##left, rightとbuttonの配置
 left, right = st.columns([3,1])
@@ -50,6 +50,7 @@ if  c_button.button("リセット"):
     st.session_state['max_score_song'] = ''
     st.session_state['max_score'] = 0.0
     st.session_state['YorN'] = False
+    st.session_state['push_YorN'] = 0
 if l_button.button("戻る"):
     st.session_state['page_control'] -= 1
 
@@ -226,7 +227,7 @@ if st.session_state['page_control'] == 11:
     left.subheader(txt)
     right.image(config.default, caption="コードさん", width=200)
     
-    if st.session_state['push_YorN'] == False:
+    if st.session_state['push_YorN'] == 0:
         #オーディオを回す処理
         voice_placeholder = st.empty()
         song_html = config.Voice_content_songs(st.session_state['max_score_song'])
@@ -238,11 +239,11 @@ if st.session_state['page_control'] == 11:
     if Yes_button.button("正解"):
         st.session_state['YorN'] = True
         left.success("正解！")
-        st.session_state['push_YorN'] = True
+        st.session_state['push_YorN'] += 1 
     if No_button.button("不正解"):
         st.session_state['YorN'] = False
         left.error("不正解...")
-        st.session_state['push_YorN'] = True
+        st.session_state['push_YorN'] += 1
         
 if st.session_state['page_control'] == 12:
     if st.session_state['YorN']:
