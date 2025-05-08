@@ -59,13 +59,13 @@ def Voice_content_songs(num, song_name):
                     </audio> 
                     
                     <script>
-                        const audio1 = document.getElementById("audio1")
-                        const audio2 = document.getElementById("audio2")
+                        const audio1 = document.getElementById("audio1");
+                        const audio2 = document.getElementById("audio2");
                         
                         audio1.play();
                         audio1.onended = () => {{
                             audio2.play();
-                        }}
+                        }};
                     </script>
                  """
 
