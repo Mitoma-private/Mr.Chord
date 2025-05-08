@@ -6,9 +6,11 @@ from utils.mir_eval_modules import audio_file_to_features, idx2chord
 config = HParams.load("run_config.yaml")
 model_file = './test/btc_model.pt'
 idx_to_chord = idx2chord
+use_cuda = torch.cuda.is_available()
+device = torch.device("cuda" if use_cuda else "cpu")
 
 ##モデルのロード
-model = BTC_model(config=config.model)
+model = BTC_model(config=config.model).to(device)
 if os.path.isfile(model_file):
     checkpoint = torch.load(model_file)
     mean = checkpoint['mean']
@@ -31,7 +33,7 @@ def chord_estimation(audio_path):
     lines = []
     with torch.no_grad:
         model.eval()
-        feature = torch.tensor(feature, dtype=torch.float32).unsqueeze(0)
+        feature = torch.tensor(feature, dtype=torch.float32).unsqueeze(0).to(device)
         for t in range(num_instance):
             self_attn_output, _ = model.self_attn_layers(feature[:, n_timestep * t:n_timestep * (t + 1), :])
             prediction, _ = model.output_layer(self_attn_output)
