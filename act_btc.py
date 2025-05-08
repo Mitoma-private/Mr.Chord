@@ -123,4 +123,5 @@ chord_time, chords, all_time, feature =  chord_estimation("./シンデレラボ�
 print(chord_time)
 print(chords)
 print(feature)
+print(all_time)
 full_score, song_name = score_calculate(chord_time, chords, all_time)

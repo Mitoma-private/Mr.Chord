@@ -179,3 +179,4 @@ if st.session_state['page_control'] == 8:
     st.text(chord_time)
     st.text(chords)
     st.text(feature)
+    st.text(all_time)
