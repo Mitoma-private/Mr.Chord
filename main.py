@@ -5,6 +5,7 @@ import streamlit.components.v1 as stc
 import time
 import config
 import base64
+from act_btc import chord_estimation
 
 ##タイトル
 st.title("曲当てロボット コードさん")
@@ -166,6 +167,7 @@ if st.session_state['page_control'] == 8:
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
     
     with st.spinner("処理中です..."):
-        pass
+        chord_lines = chord_estimation(wav_file)
+    st.text(chord_lines)
     
 
