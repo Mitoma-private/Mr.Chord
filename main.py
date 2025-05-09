@@ -226,6 +226,7 @@ if st.session_state['page_control'] == 11:
     txt = st.session_state['max_score_song'].split("-")[-1] + "!!!"
     left.subheader(txt)
     right.image(config.default, caption="コードさん", width=200)
+    left.text(st.session_state['max_score'])
     
     if Yes_button.button("正解"):
         st.session_state['YorN'] = True
