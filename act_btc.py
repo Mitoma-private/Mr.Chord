@@ -58,7 +58,7 @@ def chord_estimation(audio_path):
 
     chord_time = []
     chords = []
-    for line in lines:
+    for i, line in enumerate(lines):
         l = line.split(" ")
         start = float(l[0])
         end = float(l[1])
@@ -66,6 +66,10 @@ def chord_estimation(audio_path):
         if not chord == "N":
             chords.append(chord)
             chord_time.append(end - start)
+        else:
+            if i != 0 and i != len(lines)-1:
+                chords.append(chord)
+                chord_time.append(end - start)
     all_time = sum(chord_time)
         
     return chord_time, chords, all_time
