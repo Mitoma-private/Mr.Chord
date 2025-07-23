@@ -272,18 +272,18 @@ if st.session_state['page_control'] == 13:
     time.sleep(0.5)
     voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
 
-"""
-if st.session_state['page_control'] == 14:
-    left.subheader("ということで、ここからは三苫君にバトンタッチするね")
-    right.image(config.default, caption="コードさん", width=200)
+
+#if st.session_state['page_control'] == 14:
+#    left.subheader("ということで、ここからは三苫君にバトンタッチするね")
+#    right.image(config.default, caption="コードさん", width=200)
     
-    #オーディオを回す処理
-    voice_placeholder = st.empty()
-    voice_html = config.Voice_content(st.session_state['page_control'])
-    voice_placeholder.empty()
-    time.sleep(0.5)
-    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
-"""
+#    #オーディオを回す処理
+#    voice_placeholder = st.empty()
+#    voice_html = config.Voice_content(st.session_state['page_control'])
+#    voice_placeholder.empty()
+#    time.sleep(0.5)
+#    voice_placeholder.markdown(voice_html, unsafe_allow_html=True)
+
 if st.session_state['page_control'] == 14:
     left.subheader("じゃあみんな、バイバーイ！")
     right.image(config.happy, caption="コードさん", width=200)
